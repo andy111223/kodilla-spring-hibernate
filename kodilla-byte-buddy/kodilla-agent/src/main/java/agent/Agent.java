@@ -12,10 +12,10 @@ public class Agent {
         System.out.println("Is retransform classes allowed: " + instrumentation.isRetransformClassesSupported());
 
         new AgentBuilder.Default()
-                .type(ElementMatchers.nameStartsWith("bytebuddy"))
+                .type(ElementMatchers.nameStartsWith("user"))
                 .transform((builder, typeDescription, classLoader, module, protectionDomain) -> {
                     System.out.println("Class " + typeDescription);
-                    return builder.visit(Advice.to(MyMethodMonitor.class).on(ElementMatchers.any()));
+                    return builder.visit(Advice.to(MyMethodMonitor.class).on(ElementMatchers.named("doSomething")));
                 })
                 .installOn(instrumentation);
     }
