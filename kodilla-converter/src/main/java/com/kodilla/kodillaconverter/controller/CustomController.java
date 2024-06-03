@@ -18,9 +18,9 @@ public class CustomController {
         System.out.println(customObject.getFieldThree());
     }
     @PostMapping(path = "pairs")
-    public void acceptCustomTextType(@RequestBody MyCustomDto customObject) {
-        System.out.println(customObject.getFieldOne());
-        System.out.println(customObject.getFieldTwo());
-        System.out.println(customObject.getFieldThree());
+    public void acceptCustomTextType(@RequestBody MyCustomDto myCustomDto) {
+        System.out.println(myCustomDto.getFieldOne());
+        System.out.println(myCustomDto.getFieldTwo());
+        System.out.println(myCustomDto.getFieldThree());
     }
 }
