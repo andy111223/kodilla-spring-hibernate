@@ -2,19 +2,19 @@ package reflection.controller;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-
 import reflection.Student;
 import reflection.validation.Range;
+import org.springframework.security.access.annotation.Secured;
 
 @Validated
 @RestController
 @RequestMapping("/v1/students")
 public class StudentController {
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/generate")
     public Map<Integer, String> generateStudents(
             @RequestParam(defaultValue = "20") @Range(min = 1, max = 100) int n,

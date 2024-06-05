@@ -6,6 +6,7 @@ import com.kodilla.springevents.service.Calculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,10 @@ public class CalculatorController implements ApplicationEventPublisherAware {
     @Autowired
     private Calculator calculator;
 
+    @Secured("ROLE_BASIC")
     @PostMapping(path = "add")
     public void add(@RequestBody CalculatorDto calculatorDto) {
-
         int result = calculator.add(calculatorDto.getValue1(), calculatorDto.getValue2());
-
         publisher.publishEvent(new CalculatorEvent(
                 this,
                 "add",
@@ -34,11 +34,11 @@ public class CalculatorController implements ApplicationEventPublisherAware {
                 result
         ));
     }
+
+    @Secured("ROLE_BASIC")
     @PostMapping(path = "sub")
     public void sub(@RequestBody CalculatorDto calculatorDto) {
-
         int result = calculator.sub(calculatorDto.getValue1(), calculatorDto.getValue2());
-
         publisher.publishEvent(new CalculatorEvent(
                 this,
                 "sub",
@@ -47,11 +47,11 @@ public class CalculatorController implements ApplicationEventPublisherAware {
                 result
         ));
     }
+
+    @Secured("ROLE_BASIC")
     @PostMapping(path = "mul")
     public void mul(@RequestBody CalculatorDto calculatorDto) {
-
         int result = calculator.mul(calculatorDto.getValue1(), calculatorDto.getValue2());
-
         publisher.publishEvent(new CalculatorEvent(
                 this,
                 "mul",
@@ -60,11 +60,11 @@ public class CalculatorController implements ApplicationEventPublisherAware {
                 result
         ));
     }
+
+    @Secured("ROLE_BASIC")
     @PostMapping(path = "div")
     public void div(@RequestBody CalculatorDto calculatorDto) {
-
         int result = calculator.div(calculatorDto.getValue1(), calculatorDto.getValue2());
-
         publisher.publishEvent(new CalculatorEvent(
                 this,
                 "div",

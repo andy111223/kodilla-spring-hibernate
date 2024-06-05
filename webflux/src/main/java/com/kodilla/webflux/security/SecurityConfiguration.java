@@ -1,4 +1,4 @@
-package security;
+package com.kodilla.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,10 @@ public class SecurityConfiguration {
                         .requestMatchers("/createBean").hasRole("BASIC")
                         .requestMatchers("/v1/calculator/**").hasRole("BASIC")
                         .requestMatchers("/v1/students/**").hasRole("ADMIN")
+                        .requestMatchers("/v1/orders/**").hasRole("ADMIN")
                         .requestMatchers("/user/**").hasRole("ADMIN")
+                        .requestMatchers("/books/**").hasRole("ADVANCED")
+                        .requestMatchers("/strings/**").hasRole("ADVANCED")
                         .requestMatchers("/task1.1/**", "/task1.2/**", "/task3.3/read/**", "/task4.2/read/**").hasRole("BASIC")
                         .requestMatchers("/task2.2/**", "/task3.1/**", "/task3.3/create/**", "/task3.3/update/**").hasRole("ADVANCED")
                         .requestMatchers("/task1.4/**", "/task2.1/**", "/task2.3/**", "/task3.3/delete/**", "/task4.2/create/**").hasRole("ADMIN")
